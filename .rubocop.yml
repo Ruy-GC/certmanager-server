@@ -1,0 +1,221 @@
+# .rubocop.yml
+
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+
+
+AllCops:
+  TargetRubyVersion: 3.2.2
+  TargetRailsVersion: 7.0.4
+  Exclude:
+    - '**/db/migrate/*'
+    - 'db/schema.rb'
+    - '**/Gemfile.lock'
+    - '**/Rakefile'
+    - '**/rails'
+    - '**/vendor/**/*'
+    - '**/spec_helper.rb'
+    - 'node_modules/**/*'
+    - 'bin/*'
+
+###########################################################
+###################### RuboCop ############################
+###########################################################
+
+# You can find all configuration options for rubocop here: https://docs.rubocop.org/rubocop/cops_bundler.html
+
+
+###########################################################
+######################## Layout ###########################
+###########################################################
+
+Layout/ClassStructure:
+  ExpectedOrder:
+    - module_inclusion
+    - constants
+    - association
+    - public_attribute_macros
+    - public_delegate
+    - macros
+    - initializer
+    - public_class_methods
+    - public_methods
+    - protected_attribute_macros
+    - protected_methods
+    - private_attribute_macros
+    - private_delegate
+    - private_methods
+
+Layout/EmptyLineAfterMultilineCondition:
+  Enabled: true
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+Layout/LineEndStringConcatenationIndentation: # (new in 1.18)
+  Enabled: true
+
+Layout/LineLength:
+  Max: 150
+  Exclude:
+    - '**/spec/**/*'
+
+Layout/MultilineArrayBraceLayout:
+  EnforcedStyle: new_line
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineHashBraceLayout:
+  EnforcedStyle: new_line
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: new_line
+
+Layout/MultilineMethodDefinitionBraceLayout:
+  EnforcedStyle: new_line
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceBeforeBrackets: # (new in 1.7)
+  Enabled: true
+
+Layout/SpaceInLambdaLiteral:
+  EnforcedStyle: require_space
+
+
+###########################################################
+######################## Lint #############################
+###########################################################
+
+Lint/AmbiguousAssignment: # (new in 1.7)
+  Enabled: true
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - '**/spec/**/*'
+
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: false
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
+Lint/DeprecatedConstants: # (new in 1.8)
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/DuplicateBranch: # (new in 1.3)
+  Enabled: true
+
+Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement: # (new in 1.1)
+  Enabled: true
+
+Lint/DuplicateRequire:
+  Enabled: true
+
+Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/EmptyBlock: # (new in 1.1)
+  Enabled: true
+
+Lint/EmptyClass: # (new in 1.3)
+  Enabled: true
+
+Lint/EmptyConditionalBody:
+  Enabled: true
+
+Lint/EmptyFile:
+  Enabled: true
+
+Lint/EmptyInPattern: # (new in 1.16)
+  Enabled: true
+
+Lint/FloatComparison:
+  Enabled: true
+
+Lint/LambdaWithoutLiteralBlock: # (new in 1.8)
+  Enabled: true
+
+Lint/MissingSuper:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks: # (new in 1.2)
+  Enabled: true
+
+Lint/NumberConversion:
+  Enabled: true
+
+Lint/NumberedParameterAssignment: # (new in 1.9)
+  Enabled: true
+
+Lint/OrAssignmentToConstant: # (new in 1.9)
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/RedundantDirGlobSort: # (new in 1.8)
+  Enabled: true
+
+Lint/SelfAssignment:
+  Enabled: true
+
+Lint/SymbolConversion: # (new in 1.9)
+  Enabled: true
+
+Lint/ToEnumArguments: # (new in 1.1)
+  Enabled: true
+
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/TripleQuotes: # (new in 1.9)
+  Enabled: true
+
+Lint/UnexpectedBlockArity: # (new in 1.5)
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator: # (new in 1.1)
+  Enabled: true
+
+Lint/UnusedBlockArgument:
+  IgnoreEmptyBlocks: false
+
+Lint/UnusedMethodArgument:
+  IgnoreEmptyMethods: false
+
+Lint/UselessMethodDefinition:
+  Enabled: true
