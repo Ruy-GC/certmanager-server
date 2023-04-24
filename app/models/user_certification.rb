@@ -1,2 +1,0 @@
-class UserCertification < ApplicationRecord
-end
