@@ -47,6 +47,7 @@ group :development, :test do
   gem 'byebug', '~> 11.1', '>= 11.1.3'
   gem 'faker'
   gem 'dotenv-rails'
+  gem 'roo'
 end
 
 group :development do
