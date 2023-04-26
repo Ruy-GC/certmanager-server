@@ -21,13 +21,6 @@ ENV MYSQL_HOST=$AZURE_HOST \
     MYSQL_PASSWORD=$AZURE_PW! \
     MYSQL_DATABASE=$AZURE_DB
 
-# RUN mysql -h ibmserver.mysql.database.azure.com --protocol=tcp -u slyfox -p ACRRS14! ibm
-RUN 
-
-# RUN service mysqld start
-# RUN mysql -h localhost -P 3306 --protocol=tcp -u root 
-# RUN service mysql start
-
 # Copy the rest of the application code
 COPY . ./
 
