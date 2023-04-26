@@ -1,0 +1,20 @@
+<h1>All Certifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Category</th>
+      <th>Skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @certifications.each do |certification| %>
+      <tr>
+        <td><%= certification.title %></td>
+        <td><%= certification.category %></td>
+        <td><%= certification.skills %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
