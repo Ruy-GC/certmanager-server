@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :users
   resources :certifications
+
+  get "latest5/:id", to: "certifications#latest5" 
+
   resources :user_certifications
 
 end
