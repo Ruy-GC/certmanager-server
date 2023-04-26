@@ -1,4 +1,4 @@
 class EmployeeCertification < ApplicationRecord
-    has_one :employee
-    has_one :certification
+    belongs_to :employee
+    belongs_to :certification
 end

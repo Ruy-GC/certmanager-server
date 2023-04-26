@@ -6,5 +6,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :certifications
+  resources :user_certifications
 
 end

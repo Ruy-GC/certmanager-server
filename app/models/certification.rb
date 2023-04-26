@@ -1,3 +1,7 @@
 class Certification < ApplicationRecord
-    belongs_to :employee_certification
+    has_many :employee_certification
+
+    validates :title, presence: true
+    validates :category, presence: true
+    validates :skills, presence: true
 end

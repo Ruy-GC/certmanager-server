@@ -20,6 +20,6 @@ class CertificationsController < ApplicationController
     private
 
     def certification_params
-        params.require(:certification).permit(:name, :certified_by, :date, :user_id)
+        params.require(:certification).permit(:title, :category, :skills)
     end
 end

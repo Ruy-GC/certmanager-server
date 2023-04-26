@@ -1,3 +1,5 @@
 class Employee < ApplicationRecord
-    belongs_to :employee_certification
+    has_many :employee_certification
+    
+    validates :id, presence: true
 end
