@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :users
+  resources :employees
   resources :certifications
 
   get "latest5/:id", to: "certifications#latest5" 
 
-  resources :user_certifications
+  resources :employee_certifications
+
+  resources :users, only: [:create]
 
 end
