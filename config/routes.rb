@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :employees
+  
   resources :certifications
-
   get "latest5/:id", to: "certifications#latest5" 
 
   resources :employee_certifications
 
-  resources :users, only: [:create]
+  resources :users
+  post "/auth/login", to: "authentication#login"
 
 end

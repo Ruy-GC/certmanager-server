@@ -2,7 +2,8 @@
 class UsersController < ApplicationController
 
   before_action :set_user, only: [:show, :destroy]
-  
+  skip_before_action :authenticate_request, only: [:create]
+
   #GET /users
   def index
     users = User.order('created_at DESC')
@@ -20,12 +21,15 @@ class UsersController < ApplicationController
 
   #POST /users
   def create
+    #TODO: fix create method
     @user = User.new(user_params)
-    #token = encode_token({email: @user.email})
-    #p token
-    if @user.save
-      render @user, status: :created
+    p "------------------------------"
+    p user_params
+    p @user
+    p "------------------------------"
 
+    if @user.save
+      render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
     
@@ -46,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email,:password,:password_confirmation)
   end
 end
 

@@ -18,7 +18,7 @@ class CertificationsController < ApplicationController
     end
 
     def latest5
-        @certifications = EmployeeCertification.where(certification_id:params[:id])
+        @certifications = EmployeeCertification.where(certification_id: params[:id])
             .select(:employee_id,:issued_date)
             .order('issued_date DESC')
             .first(5)
