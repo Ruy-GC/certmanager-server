@@ -14,28 +14,7 @@ class UsersController < ApplicationController
   def show
     render json: @user, status: :ok
   end
-
-  def new
-    @user = User.new
-  end
-
-  #POST /users
-  def create
-    #TODO: fix create method
-    @user = User.new(user_params)
-    p "------------------------------"
-    p user_params
-    p @user
-    p "------------------------------"
-
-    if @user.save
-      render json: @user, status: :created
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    
-    end
-  end
-
+  
   #DELETE /users/:id
   def destroy
     @user.destroy
