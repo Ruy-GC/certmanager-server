@@ -28,10 +28,10 @@ jobs:
     steps:
       - name: Print Working Directory
         run: pwd
-      - name: Verify bin
-        run: ls bin
-      - name: Set executable permission for bin/rails
-        run: chmod +x ../../bin/rails
+      - name: Print Base Directory
+        run: echo $GITHUB_WORKSPACE
+      #- name: Set executable permission for bin/rails
+      #  run: chmod +x ../../bin/rails
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
