@@ -5,12 +5,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :users
+  resources :employees
   resources :certifications
   resources :import
-
+  resources :user_certifications
+  resources :employee_certifications
+  resources :users
+  
   get "latest5/:id", to: "certifications#latest5" 
   post 'upload', to: 'import#upload'
+  post "/auth/login", to: "authentication#login"
 
-  resources :user_certifications
 end
