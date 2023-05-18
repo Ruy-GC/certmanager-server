@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
-  resources :imports
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
 
   resources :employees
-  
   resources :certifications
-  get "latest5/:id", to: "certifications#latest5" 
-
+  resources :import
+  resources :user_certifications
   resources :employee_certifications
-
   resources :users
+  
+  get "latest5/:id", to: "certifications#latest5" 
+  post 'upload', to: 'import#upload'
   post "/auth/login", to: "authentication#login"
 
 end

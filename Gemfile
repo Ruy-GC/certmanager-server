@@ -14,6 +14,9 @@ gem 'mysql2'
 gem "puma", "~> 5.0"
 
 gem 'rubocop', '~> 1.50', require: false
+
+gem 'rack-cors'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
