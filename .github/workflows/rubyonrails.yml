@@ -26,8 +26,14 @@ jobs:
       MYSQL_ROOT_PASSWORD: ACRRS14!
       MYSQL_DATABASE: ibm
     steps:
-      - name: Set executable permission for bin/rails
-        run: chmod +x ../../bin/rails
+     # - name: Set executable permission for bin/rails
+     #   run: chmod +x ../../bin/rails
+      - name: Verify File Existence 1
+        run: ls
+      - name: Verify File Existence 2
+        run: ls ..
+      - name: Verify File Existence 3
+        run: ls ../../
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
