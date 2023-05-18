@@ -7,24 +7,26 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "main" ]
+    branches-ignore:
+      - '*'
   pull_request:
-    branches: [ "main" ]
+    branches-ignore:
+      - '*'
 jobs:
   test:
     runs-on: ubuntu-latest
     services:
-      postgres:
-        image: postgres:11-alpine
-        ports:
-          - "5432:5432"
+      mysql:
+        image: mysql:5.7
         env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
-          POSTGRES_PASSWORD: password
+          MYSQL_HOST: ibmserver.mysql.database.azure.com
+          MYSQL_USER: slyfox
+          MYSQL_PASSWORD: ACRRS14!
+          MYSQL_DATABASE: ibm
     env:
       RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      MYSQL_ROOT_PASSWORD: ACRRS14!
+      MYSQL_DATABASE: ibm
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
