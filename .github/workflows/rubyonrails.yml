@@ -31,7 +31,7 @@ jobs:
       - name: Print Base Directory
         run: echo $GITHUB_WORKSPACE
       - name: Set executable permission for bin/rails
-        run: rails chmod +x
+        run: /home/runner/work/certmanager-server/bin/rails chmod +x
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
@@ -41,7 +41,7 @@ jobs:
           bundler-cache: true
       # Add or replace database setup steps here
       - name: Set up database schema
-        run: rails db:schema:load
+        run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
