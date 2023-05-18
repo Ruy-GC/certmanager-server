@@ -17,6 +17,8 @@ gem 'rubocop', '~> 1.50', require: false
 
 gem 'rack-cors'
 
+gem 'bundler-audit'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
