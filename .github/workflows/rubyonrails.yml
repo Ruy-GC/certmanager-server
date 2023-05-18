@@ -30,8 +30,10 @@ jobs:
         run: pwd
       - name: Print Base Directory
         run: echo $GITHUB_WORKSPACE
-      - name: List Directory Contents
-        run: ls -R /home/runner/work/certmanager-server/certmanager-server
+      - name: Set executable permission for bin/rails
+        run: 
+          cd bin
+          chmod +x rails
       - name: Checkout code
         uses: actions/checkout@v3
       # Add or replace dependency steps here
