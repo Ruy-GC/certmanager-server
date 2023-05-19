@@ -28,15 +28,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
       # Add or replace dependency steps here
-      - name: Install Ruby
+      - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
           bundler-cache: true
+
 
       - name: Set executable permission for bin/rails
         run: chmod +x bin/rails
+        
+      - name: Lint Ruby files
+        run: bin/rubocop --parallel
       # Add or replace database setup steps here
       # - name: Set up database schema
       #   run: bundle exec rails db:schema:load
@@ -49,20 +53,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Install Ruby
+        
+      - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          bundler-cache: true
+          
       - name: Install gems
         run: bundle install
+        
+      - name: Run linters
+        run: |
+          bin/rubocop --parallel
 
-      # - name: List installed gems
-      #   run: gem list
       # - name: Security audit dependencies
       #   run: bundler-audit --update
       # - name: Set executable permission for bin/brakeman
       #   run: chmod +x bin/brakeman
       # - name: Security audit application code
       #   run: /home/runner/work/certmanager-server/certmanager-server/bin/brakeman -q -w2
-      # - name: Lint Ruby files
-      #   run: bin/rubocop --parallel
+      
