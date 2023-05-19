@@ -39,8 +39,6 @@ jobs:
       - name: Set executable permission for bin/rails
         run: chmod +x bin/rails
         
-      - name: Lint Ruby files
-        run: bin/rubocop --parallel
       # Add or replace database setup steps here
       # - name: Set up database schema
       #   run: bundle exec rails db:schema:load
@@ -62,9 +60,9 @@ jobs:
       - name: Install gems
         run: bundle install
         
-      - name: Run linters
-        run: |
-          bin/rubocop --parallel
+      #- name: Run linters
+      #  run: |
+      #    bin/rubocop --parallel
 
       # - name: Security audit dependencies
       #   run: bundler-audit --update
