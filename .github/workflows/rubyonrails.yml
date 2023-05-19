@@ -55,6 +55,11 @@ jobs:
       - name: Install gems locally
         run: bundle install
       # Add or replace any other lints here.
+      - name: Print current working directory
+        run: pwd
+
+      - name: List installed gems
+        run: gem list
       # - name: Security audit dependencies
       #   run: bundler-audit --update
       # - name: Set executable permission for bin/brakeman
