@@ -7,10 +7,10 @@ services:
     depends_on:
       - db
     environment:
-      MYSQL_HOST: ibmserver.mysql.database.azure.com
-      MYSQL_USER: slyfox
-      MYSQL_PASSWORD: ACRRS14!
-      MYSQL_DATABASE: ibm
+      MYSQL_HOST: ${AZURE_HOST}
+      MYSQL_USER: ${AZURE_UN}
+      MYSQL_PASSWORD: ${AZURE_PW}
+      MYSQL_DATABASE: ${AZURE_DB}
   db:
     image: mysql:5.7
     environment:
