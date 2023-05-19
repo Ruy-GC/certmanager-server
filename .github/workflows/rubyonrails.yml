@@ -57,7 +57,9 @@ jobs:
       # Add or replace any other lints here.
       # - name: Security audit dependencies
       #   run: bundler-audit --update
+      - name: Set executable permission for bin/brakeman
+        run: chmod +x bin/brakeman
       - name: Security audit application code
-        run: bin/brakeman -q -w2
+        run: /home/runner/work/certmanager-server/certmanager-server/bin/brakeman -q -w2
       - name: Lint Ruby files
         run: bin/rubocop --parallel
