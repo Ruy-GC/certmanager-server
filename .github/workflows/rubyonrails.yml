@@ -53,10 +53,9 @@ jobs:
         with:
           bundler-cache: true
       - name: Install gems locally
-        run: bundle install
-      # Add or replace any other lints here.
-      - name: Print current working directory
-        run: pwd
+        run: 
+          gem install bundler
+          bundle install
 
       - name: List installed gems
         run: gem list
