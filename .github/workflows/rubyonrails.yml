@@ -53,7 +53,10 @@ jobs:
         with:
           ruby-version: 3.2.2
       - name: Install gems
-        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
+        run: 
+          gem install bundler
+          bundle install
+          gem install rubocop
 
       - name: List installed gems
         run: gem list
