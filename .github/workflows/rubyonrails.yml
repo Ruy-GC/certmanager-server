@@ -53,10 +53,10 @@ jobs:
         with:
           ruby-version: 3.2.2
       - name: Install gems
-        run: 
-          gem install bundler
-          bundle install
-          gem install rubocop
+        run: bundle install
+        
+      - name: Install gems
+        run: gem install rubocop
 
       - name: List installed gems
         run: gem list
