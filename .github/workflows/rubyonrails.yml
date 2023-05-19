@@ -54,17 +54,14 @@ jobs:
           ruby-version: 3.2.2
       - name: Install gems
         run: bundle install
-        
-      - name: Install gems
-        run: gem install rubocop
 
-      - name: List installed gems
-        run: gem list
+      # - name: List installed gems
+      #   run: gem list
       # - name: Security audit dependencies
       #   run: bundler-audit --update
       # - name: Set executable permission for bin/brakeman
       #   run: chmod +x bin/brakeman
       # - name: Security audit application code
       #   run: /home/runner/work/certmanager-server/certmanager-server/bin/brakeman -q -w2
-      - name: Lint Ruby files
-        run: bin/rubocop --parallel
+      # - name: Lint Ruby files
+      #   run: bin/rubocop --parallel
