@@ -53,9 +53,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Install gems locally
-        run: 
-          gem install bundler
-          bundle install
+        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
 
       - name: List installed gems
         run: gem list
