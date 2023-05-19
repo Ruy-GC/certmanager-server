@@ -33,7 +33,7 @@ jobs:
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
-          
+
       - name: Set executable permission for bin/rails
         run: chmod +x bin/rails
       # Add or replace database setup steps here
@@ -52,7 +52,7 @@ jobs:
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
-      -name: Install gems locally
+      - name: Install gems locally
         run: bundle install
       # Add or replace any other lints here.
       - name: Security audit dependencies
