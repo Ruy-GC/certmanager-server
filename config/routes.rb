@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :employee_certifications
   resources :users
   
-  get "latest5/:id", to: "certifications#latest5" 
+  get "latest5/:id", to: "employee_certifications#latest5" 
   post 'upload', to: 'import#upload'
   post "/auth/login", to: "authentication#login"
 

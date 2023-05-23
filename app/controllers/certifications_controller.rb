@@ -17,21 +17,6 @@ class CertificationsController < ApplicationController
         end
     end
 
-    def latest5
-        @certifications = EmployeeCertification.where(certification_id: params[:id])
-            .select(:employee_id,:issued_date)
-            .order('issued_date DESC')
-            .first(5)
-            
-        render json: {
-            status: 'SUCCESS', 
-            message: '5 most recent certifications', 
-            data: @certifications
-            }, status: :ok
-
-    end
-
-
     private
 
     def certification_params
