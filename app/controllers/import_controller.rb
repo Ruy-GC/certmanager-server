@@ -1,6 +1,42 @@
 class ImportController < ApplicationController
-  def load
-    render :load, status: :unprocessable_entity
+
+  def get_certifications_data(excel_file)
+    certifications_data = []
+    (2..3).each do |i|
+      certifications_data << {
+        title: excel_file.cell(i, 'D'),
+        category: excel_file.cell(i, 'F'),
+        skills: 'Software',
+        created_at: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+        updated_at: Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      }
+    end
+    certifications_data
+  end
+  
+  def get_employees_data(excel_file)
+    employees_data = []
+    (2..3).each do |i|
+      employees_data << {
+        id: excel_file.cell(i, 'A'),
+        org: excel_file.cell(i, 'B'),
+        work_location: 'C',
+        created_at: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
+        updated_at: Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      }
+    end
+    employees_data
+  end
+  
+  def get_cert_employees_data(excel_file)
+    cert_employees_data = []
+    (2..3).each do |i|
+      cert_employees_data << {
+        certification_id: excel_file.cell(i, 'D'),
+        employee_id: excel_file.cell(i, 'A')
+      }
+    end
+    cert_employees_data
   end
 
   def upload
@@ -14,42 +50,32 @@ class ImportController < ApplicationController
       certifications_data = []
       employees_data = []
 
-      (10..15).each do |i|
-        certifications_data << {
-          title: excel_file.cell(i, 'D'),
-          category: excel_file.cell(i, 'F'),
-          skills: 'Software',
-          created_at: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
-          updated_at: Time.now.strftime('%Y-%m-%d %H:%M:%S')
-        }
-        employees_data << {
-          id: excel_file.cell(i, 'A'),
-          org: excel_file.cell(i, 'B'),
-          work_location: 'C',
-          created_at: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
-          updated_at: Time.now.strftime('%Y-%m-%d %H:%M:%S')
-        }
-        cert_employees_data << {
-          certification_id: excel_file.cell(i, 'D'),
-          employee_id: excel_file.cell(i, 'A')
-        }
-      end
+      certifications_data = get_certifications_data(excel_file)
+      employees_data = get_employees_data(excel_file)
+      cert_employees_data = get_cert_employees_data(excel_file)
+
+      # puts certifications_data
+      # puts employees_data
+
+
     rescue StandardError
       render json: { status: 'FAILED', message: 'Error while uploading the certifications' }
     end
 
     # insert the data into the database
     index = 0
+    success = true
+
     begin
       Certification.transaction do
         certifications_data.each do |cert_data|
           certification = Certification.find_or_initialize_by(title: cert_data[:title])
           certification.update!(cert_data)
           cert_employees_data[index][:certification_id] = certification.id
-          index = index + 1 
+          index += 1
         end
       end
-      
+
       Employee.transaction do
         employees_data.each do |emp_data|
           employee = Employee.find_or_initialize_by(id: emp_data[:id])
@@ -64,9 +90,14 @@ class ImportController < ApplicationController
         end
       end
 
-      render json: { status: 'SUCCESS', message: 'Uploaded Certifications Successfully!', data: cert_employees_data }, status: :ok
+
     rescue ActiveRecord::RecordInvalid => e
+      success = false
       render json: { status: 'FAILED', message: "Error while uploading the certifications: #{e.message}" }, status: :error
+    end
+
+    if success
+      render json: { status: 'SUCCESS', message: 'Uploaded Certifications Successfully!', data: cert_employees_data }, status: :ok
     end
   end
 end

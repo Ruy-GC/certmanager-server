@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :certification do
     title { "MyString" }
-    type { "" }
+    category { "" }
     skills { "MyText" }
   end
 end

@@ -2,8 +2,8 @@ class AuthenticationController < ApplicationController
 
     #no need for token when login in
     include JsonWebToken
-    skip_before_action :authenticate_request, only: [:login]
-    
+    # skip_before_action :authenticate_request, only: [:login]
+
     #POST /auth/login
     def login
         @user = User.find_by_email(params[:email])
