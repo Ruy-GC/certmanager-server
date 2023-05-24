@@ -1,4 +1,5 @@
 class CertificationsController < ApplicationController
+    skip_before_action :authenticate_request
     def index
         certifications = Certification.order('created_at DESC')
         render json: {status: 'SUCCESS', message: 'Loaded certifications', data:certifications}, status: :ok
@@ -16,6 +17,8 @@ class CertificationsController < ApplicationController
             render json: @certification.errors, status: :unprocessable_entity
         end
     end
+
+    
 
     private
 

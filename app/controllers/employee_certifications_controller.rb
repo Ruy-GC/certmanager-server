@@ -1,4 +1,5 @@
 class EmployeeCertificationsController < ApplicationController
+    skip_before_action :authenticate_request
     def new
         @employee_certification = EmployeeCertification.new
     end
@@ -23,7 +24,18 @@ class EmployeeCertificationsController < ApplicationController
             message: '5 most recent certifications', 
             data: @certifications
             }, status: :ok
+    end
 
+    def empCert
+        @employee_certifications = EmployeeCertification.select('employee_certifications.employee_id, certifications.title, 
+        employee_certifications.issued_date, employees.work_location, certifications.skills, certifications.category')
+        .joins(:certification, :employee)
+
+        render json: {
+            status: 'SUCCESS', 
+            message: 'Employee Certifications', 
+            data: @employee_certifications
+            }, status: :ok
     end
 
     private
