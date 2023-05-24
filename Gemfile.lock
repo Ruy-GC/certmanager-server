@@ -213,6 +213,7 @@ GEM
       parser (>= 3.2.1.0)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
+    string-similarity (2.1.0)
     thor (1.2.1)
     timeout (0.3.2)
     tzinfo (2.0.6)
@@ -248,6 +249,7 @@ DEPENDENCIES
   roo
   rspec-rails (~> 6.0.0)
   rubocop (~> 1.50)
+  string-similarity
   tzinfo-data
 
 RUBY VERSION

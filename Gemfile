@@ -54,6 +54,7 @@ group :development, :test do
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem 'roo'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'string-similarity'
 end
 
 group :development do

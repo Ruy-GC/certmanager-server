@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   get "latest5/:id", to: "employee_certifications#latest5" 
   post 'upload', to: 'import#upload'
   post "/auth/login", to: "authentication#login"
-
+  get "related3/:id", to: "related#related3" 
 end
