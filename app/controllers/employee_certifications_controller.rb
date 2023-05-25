@@ -1,5 +1,5 @@
 class EmployeeCertificationsController < ApplicationController
-    skip_before_action :authenticate_request
+    
     def new
         @employee_certification = EmployeeCertification.new
     end
@@ -35,6 +35,30 @@ class EmployeeCertificationsController < ApplicationController
             status: 'SUCCESS', 
             message: 'Employee Certifications', 
             data: @employee_certifications
+            }, status: :ok
+    end
+
+    def amountPerMonth
+        ranges = {
+            '6 months' => (Date.today - 6.months)..Date.today,
+            '12 months' => (Date.today - 12.months)..(Date.today - 6.months),
+            '18 months' => (Date.today - 18.months)..(Date.today - 12.months),
+            '24 months' => (Date.today - 24.months)..(Date.today - 18.months)
+        }
+
+        @counts = {}
+        
+        ranges.each do |label,range|
+            @counts[label] = EmployeeCertification.where(
+                certification_id: params[:id],
+                issued_date: range 
+            ).count
+        end
+
+        render json: {
+            status: 'SUCCESS', 
+            message: 'Issued certifications', 
+            data: @counts
             }, status: :ok
     end
 

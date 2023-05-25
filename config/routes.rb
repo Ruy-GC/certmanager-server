@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   post "/auth/login", to: "authentication#login"
   get "related3/:id", to: "related#related3" 
   get "empCert", to: "employee_certifications#empCert" 
+  get "amntmonth/:id", to: "employee_certifications#amountPerMonth" 
 end
