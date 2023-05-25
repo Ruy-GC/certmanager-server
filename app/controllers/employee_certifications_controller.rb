@@ -46,19 +46,24 @@ class EmployeeCertificationsController < ApplicationController
             '24 months' => (Date.today - 24.months)..(Date.today - 18.months)
         }
 
-        @counts = {}
+        @counts = []
         
         ranges.each do |label,range|
-            @counts[label] = EmployeeCertification.where(
-                certification_id: params[:id],
-                issued_date: range 
-            ).count
+            obj ={
+                "name" => label,
+                "amt" => EmployeeCertification.where(
+                    certification_id: params[:id],
+                    issued_date: range 
+                ).count
+            } 
+
+            @counts.push(obj)
         end
 
         render json: {
             status: 'SUCCESS', 
             message: 'Issued certifications', 
-            data: @counts
+            data: @counts.reverse()
             }, status: :ok
     end
 
