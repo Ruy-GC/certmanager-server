@@ -12,16 +12,15 @@ jobs:
           mysql:
             image: mysql:5.7
             env:
-              AZURE_HOST: ${{secrets.AZURE_HOST}}
-              AZURE_UN: ${{secrets.AZURE_UN}}
-              AZURE_PW: ${{secrets.AZURE_PW}}
-              AZURE_DB: test
+              MYSQL_HOST: ${{secrets.AZURE_HOST}}
+              MYSQL_USER: ${{secrets.AZURE_UN}}
+              MYSQL_PASSWORD:  ${{secrets.AZURE_PW}}
+              MYSQL_DATABASE: test
+              MYSQL_ROOT_PASSWORD:  ${{secrets.AZURE_PW}}
             ports:
               - "3306:3306"
         env:
           RAILS_ENV: test
-          MYSQL_ROOT_PASSWORD: ${{secrets.AZURE_PW}}
-          MYSQL_DATABASE: test
 
         steps:
             - name: "Checkout repository"
