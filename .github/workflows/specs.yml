@@ -20,7 +20,7 @@ jobs:
             env:
               MYSQL_HOST: ${{env.DB_HOST}}
               MYSQL_USER: ${{env.DB_USER}}
-              MYSQL_PASSWORD:  
+              MYSQL_PASSWORD: ${{env.DB_PASSWORD}}
               MYSQL_DATABASE: ${{env.DB_DATABASE}}
               MYSQL_ROOT_PASSWORD:  ${{env.DB_PASSWORD}}
             ports:
