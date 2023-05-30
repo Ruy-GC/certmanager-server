@@ -32,4 +32,4 @@ jobs:
                 bundler-cache: true
 
             - name: "Authentication spec"
-              run: bundle exec rspec spec\requests\authentication_spec.rb
+              run: bundle exec rspec ./spec/requests/authentication_spec.rb
