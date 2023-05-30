@@ -20,6 +20,8 @@ jobs:
           MYSQL_HOST: ${{ secrets.AZURE_HOST }}
         ports:
           - 3306:3306
+    env:
+      RAILS_ENV: test
 
     steps:
       - name: Checkout repository
@@ -33,7 +35,6 @@ jobs:
 
       - name: Configure database.yml
         run: |
-          cp config/database.yml.example config/database.yml
           sed -i "s|username: .*|username: ${{ secrets.AZURE_UN }}|" config/database.yml
           sed -i "s|password: .*|password: ${{ secrets.AZURE_PW }}|" config/database.yml
           sed -i "s|host: .*|host: ${{ secrets.AZURE_HOST }}|" config/database.yml
