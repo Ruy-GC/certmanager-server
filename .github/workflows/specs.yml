@@ -1,9 +1,3 @@
-env:
-  DB_HOST: ${{secrets.AZURE_HOST}}
-  DB_DATABASE: test
-  DB_USER: ${{secrets.AZURE_UN}}
-  DB_PASSWORD: ${{secrets.AZURE_PW}}
-
 name: "Rspec tests"
 on:
   push:
@@ -11,38 +5,38 @@ on:
   pull_request:
     branches: ["main"]
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        name: Run Rspec Tests
-        services:
-          mysql:
-            image: mysql:8.0
-            env:
-              MYSQL_HOST: ${{env.DB_HOST}}
-              MYSQL_USER: ${{env.DB_USER}}
-              MYSQL_PASSWORD: ${{env.DB_PASSWORD}}
-              MYSQL_DATABASE: ${{env.DB_DATABASE}}
-              MYSQL_ROOT_PASSWORD:  ${{env.DB_PASSWORD}}
-            ports:
-              - "3306:3306"
+  test:
+    runs-on: ubuntu-latest
+    name: Rspec Tests
+
+    services:
+      mysql:
+        image: mysql:8.0
         env:
-          RAILS_ENV: test
+          MYSQL_ROOT_PASSWORD: ${{ secrets.AZURE_PW }}
+          MYSQL_USER: ${{ secrets.AZURE_UN }}
+          MYSQL_PASSWORD: ${{ secrets.AZURE_PW }}
+          MYSQL_DATABASE: test
+          MYSQL_HOST: ${{ secrets.AZURE_HOST }}
+        ports:
+          - 3306:3306
 
-        steps:
-            - name: "Checkout repository"
-              uses: actions/checkout@v1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-            - name: "Setup ruby"
-              uses: ruby/setup-ruby@v1
-              with:
-                ruby-version: '3.2.2'
-                bundler-cache: true
+      - name: "Setup ruby"
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'
+          bundler-cache: true
 
-            - name: "Start MySQL service"
-              run: |
-                sudo service mysql start
-                mysql -h ${{env.DB_HOST}} -u ${{env.DB_USER}} -p
-                ${{env.DB_PASSWORD}}
-                
-            - name: "Authentication spec"
-              run: bundle exec rspec ./spec/requests/authentication_spec.rb
+      - name: Configure database.yml
+        run: |
+          cp config/database.yml.example config/database.yml
+          sed -i "s|username: .*|username: ${{ secrets.AZURE_UN }}|" config/database.yml
+          sed -i "s|password: .*|password: ${{ secrets.AZURE_PW }}|" config/database.yml
+          sed -i "s|host: .*|host: ${{ secrets.AZURE_HOST }}|" config/database.yml
+
+      - name: "Authentication spec"
+        run: bundle exec rspec ./spec/requests/authentication_spec.rb
