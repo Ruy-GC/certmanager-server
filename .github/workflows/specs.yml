@@ -25,14 +25,12 @@ jobs:
             - name: "Checkout repository"
               uses: actions/checkout@v1
 
-            - name: "Setup ruby"
+            - name: "Setup ruby & start MySQL"
               uses: ruby/setup-ruby@v1
               with:
                 ruby-version: '3.2.2'
                 bundler-cache: true
-            - run: | 
-                sudo /etc/init.d/mysql start
-                cp config/database.yml.ci config/database.yml
+            - run: sudo /etc/init.d/mysql start
                 
             - name: "Authentication spec"
               run: bundle exec rspec ./spec/requests/authentication_spec.rb
