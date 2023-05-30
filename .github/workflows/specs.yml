@@ -36,3 +36,8 @@ jobs:
                 
             - name: "Authentication spec"
               run: bundle exec rspec ./spec/requests/authentication_spec.rb
+              env:
+                MYSQL_HOST: ${{secrets.AZURE_HOST}}
+                MYSQL_USER: ${{secrets.AZURE_UN}}
+                MYSQL_PASSWORD: ${{secrets.AZURE_PW}}
+                MYSQL_DATABASE: test
