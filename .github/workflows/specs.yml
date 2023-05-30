@@ -1,3 +1,9 @@
+env:
+  DB_HOST: ${{secrets.AZURE_HOST}}
+  DB_DATABASE: test
+  DB_USER: ${{secrets.AZURE_UN}}
+  DB_PASSWORD: ${{secrets.AZURE_PW}}
+
 name: "Rspec tests"
 on:
   push:
@@ -10,13 +16,13 @@ jobs:
         name: Run Rspec Tests
         services:
           mysql:
-            image: mysql:5.7
+            image: mysql:8.0
             env:
-              MYSQL_HOST: ${{secrets.AZURE_HOST}}
-              MYSQL_USER: ${{secrets.AZURE_UN}}
-              MYSQL_PASSWORD:  ${{secrets.AZURE_PW}}
-              MYSQL_DATABASE: test
-              MYSQL_ROOT_PASSWORD:  ${{secrets.AZURE_PW}}
+              MYSQL_HOST: ${{env.DB_HOST}}
+              MYSQL_USER: ${{env.DB_USER}}
+              MYSQL_PASSWORD:  
+              MYSQL_DATABASE: ${{env.DB_DATABASE}}
+              MYSQL_ROOT_PASSWORD:  ${{env.DB_PASSWORD}}
             ports:
               - "3306:3306"
         env:
@@ -33,7 +39,10 @@ jobs:
                 bundler-cache: true
 
             - name: "Start MySQL service"
-              run: sudo service mysql start
+              run: |
+                sudo service mysql start
+                mysql -h ${{env.DB_HOST}} -u ${{env.DB_USER}} -p
+                ${{env.DB_PASSWORD}}
                 
             - name: "Authentication spec"
               run: bundle exec rspec ./spec/requests/authentication_spec.rb
