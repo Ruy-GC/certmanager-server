@@ -1,7 +1,9 @@
+require 'faker'
+
 FactoryBot.define do
   factory :certification do
-    title { "MyString" }
-    type { "" }
-    skills { "MyText" }
+    title { Faker::Book.title }
+    category { "Category" }
+    skills { "skills" }
   end
 end
