@@ -41,3 +41,6 @@ jobs:
 
       - name: "Authentication spec"
         run: bundle exec rspec ./spec/requests/authentication_spec.rb
+      
+      - name: "EmployeeCertification spec"
+        run: bundle exec rspec ./spec/requests/authentication_spec.rb
