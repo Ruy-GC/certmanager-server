@@ -27,7 +27,7 @@ class EmployeeCertificationsController < ApplicationController
     end
 
     def empCert
-        @employee_certifications = EmployeeCertification.select('employee_certifications.employee_id, certifications.title, 
+        @employee_certifications = EmployeeCertification.select('employee_certifications.employee_id,employee_certifications.certification_id, certifications.title, 
         employee_certifications.issued_date, employees.work_location, certifications.skills, certifications.category')
         .joins(:certification, :employee)
 

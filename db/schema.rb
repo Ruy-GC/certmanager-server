@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_31_015627) do
   create_table "certifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title"
+    t.string "title", limit: 500
     t.string "category"
     t.text "skills"
     t.datetime "created_at", null: false
@@ -34,6 +34,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_015627) do
     t.string "work_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ibmcsv", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "uid"
+    t.text "org"
+    t.text "work_location"
+    t.text "certification"
+    t.text "issue_date"
+    t.text "category"
   end
 
   create_table "imports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
