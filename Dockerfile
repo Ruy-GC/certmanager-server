@@ -24,8 +24,8 @@ ENV MYSQL_HOST=$AZURE_HOST \
 # Copy the rest of the application code
 COPY . ./
 
-# # Expose port 3000 for the Rails server
-EXPOSE 3000
+# # # Expose port 3000 for the Rails server
+# EXPOSE 3000
 
 # # Start the Rails server
 CMD ["rails", "server", "-b", "0.0.0.0"]

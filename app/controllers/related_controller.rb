@@ -1,6 +1,7 @@
 class RelatedController < ApplicationController
     require 'string/similarity'
-
+    skip_before_action :authenticate_request
+    
     def related3
         @certifications = Certification.all
 
