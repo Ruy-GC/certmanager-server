@@ -14,7 +14,7 @@ class ImportController < ApplicationController
       certifications_data = []
       employees_data = []
 
-      (16..8788).each do |i|
+      (2..8788).each do |i|
         certifications_data << {
           title: excel_file.cell(i, 'D'),
           category: excel_file.cell(i, 'F'),
