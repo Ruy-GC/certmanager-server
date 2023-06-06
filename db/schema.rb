@@ -11,15 +11,15 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_31_015627) do
-  create_table "certifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "title", limit: 500
+  create_table "certifications", charset: "latin1", force: :cascade do |t|
+    t.string "title"
     t.string "category"
     t.text "skills"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "employee_certifications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "employee_certifications", charset: "latin1", force: :cascade do |t|
     t.string "employee_id", null: false
     t.bigint "certification_id", null: false
     t.date "issued_date"
@@ -29,28 +29,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_015627) do
     t.index ["employee_id"], name: "index_employee_certifications_on_employee_id"
   end
 
-  create_table "employees", id: :string, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "employees", id: :string, charset: "latin1", force: :cascade do |t|
     t.string "org"
     t.string "work_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "ibmcsv", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.text "uid"
-    t.text "org"
-    t.text "work_location"
-    t.text "certification"
-    t.text "issue_date"
-    t.text "category"
-  end
-
-  create_table "imports", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "imports", charset: "latin1", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "latin1", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest"
     t.datetime "created_at", null: false
